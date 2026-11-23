@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from openai import OpenAI
 
 APP_DIR = pathlib.Path(__file__).resolve().parent
-STATIC_DIR = APP_DIR / "static"
+STATIC_DIR = APP_DIR 
 MAX_BYTES = 20 * 1024 * 1024
 ALLOWED = {".pdf", ".png", ".jpg", ".jpeg", ".docx", ".txt", ".md", ".pptx"}
 MODEL = os.getenv("OPENAI_MODEL", "gpt-6.2-astra")
