@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071b2b"><meta name="description" content="BioSage AI - Karpagam B.Sc. Biotechnology study assistant">
+<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/static/icon-192.png">
+<title>BioSage AI · Biotechnology Study Assistant</title>
+<style>
+:root{--bg:#061725;--surface:#0c2639;--surface2:#12354b;--line:#20485f;--text:#eff8ff;--muted:#a6bfce;--teal:#52e4c0;--blue:#65bfff;--good:#6ee7a5;--warn:#ffd27d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 85% 0%,#123e50 0%,transparent 38%),linear-gradient(145deg,#061725,#092337 65%,#061725);color:var(--text);font:15px/1.5 Inter,system-ui,Arial,sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:13px;padding:11px 15px;background:linear-gradient(110deg,var(--teal),#8af2ce);color:#062236;font-weight:800}button:disabled{opacity:.5;cursor:not-allowed}.secondary{background:#15384d;color:var(--text);border:1px solid var(--line)}a{color:var(--teal)}
+header{position:sticky;top:0;z-index:10;background:#061725eF;border-bottom:1px solid var(--line);backdrop-filter:blur(16px);padding:12px 16px}.top{max-width:1180px;margin:auto;display:flex;align-items:center;gap:12px}.brand{display:flex;align-items:center;gap:10px;min-width:0}.brand img{width:43px;height:43px;object-fit:cover;border-radius:13px;border:1px solid #2c6b7b}.brand b{font-size:17px;letter-spacing:.2px}.brand small{display:block;color:var(--muted);font-size:11px}.spacer{flex:1}.status{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:6px 9px;border-radius:99px}
+main{max-width:1180px;margin:auto;padding:22px 16px 60px}.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:20px;align-items:center;padding:25px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(120deg,#10354b,#0b263a);overflow:hidden}.eyebrow{color:var(--teal);font-size:11px;letter-spacing:1.4px;font-weight:900;text-transform:uppercase}.hero h1{font-size:clamp(28px,5vw,47px);line-height:1.08;margin:8px 0 12px}.hero p{color:var(--muted);max-width:660px}.hero-art{width:100%;max-height:250px;object-fit:cover;object-position:center 28%;border-radius:18px;opacity:.95}
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}.pill{border:1px solid var(--line);color:#c4e9f1;border-radius:99px;padding:5px 10px;font-size:11px}
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:17px;margin-top:18px}.side,.panel{background:#0b2436eF;border:1px solid var(--line);border-radius:19px}.side{padding:14px;height:max-content;position:sticky;top:80px}.navbtn{width:100%;text-align:left;background:transparent;color:var(--muted);padding:11px;border-radius:11px;margin:2px 0}.navbtn.active,.navbtn:hover{background:#15394e;color:var(--text)}.navbtn span{margin-right:9px}
+.panel{padding:18px;min-width:0}.panel h2{margin:0 0 5px;font-size:21px}.muted{color:var(--muted);font-size:13px}.modebar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.mode{background:#102f44;color:var(--muted);border:1px solid var(--line)}.mode.active{background:#164d50;border-color:#3aa98e;color:#eafff7}
+.chat{min-height:260px;max-height:460px;overflow:auto;padding:12px;background:#071d2d;border:1px solid var(--line);border-radius:15px}.msg{max-width:92%;padding:12px 14px;border-radius:15px;margin:8px 0;white-space:pre-wrap;overflow-wrap:anywhere}.msg.ai{background:#12364b;border:1px solid #24556d}.msg.user{background:#15534f;margin-left:auto;color:#f0fffb}.msg .source{display:block;color:var(--teal);font-size:11px;margin-top:9px}
+.composer{display:flex;gap:9px;margin-top:10px;align-items:flex-end}.composer textarea{flex:1;min-height:54px;max-height:140px;resize:vertical;background:#071d2d;border:1px solid var(--line);color:var(--text);border-radius:13px;padding:13px;outline:none}.composer textarea:focus,.field:focus{border-color:var(--teal)}
+.drop{border:1.5px dashed #34738a;background:#0a2030;border-radius:16px;padding:20px;text-align:center;margin:13px 0}.drop input{max-width:100%;color:var(--muted)}.filemeta{font-size:12px;color:var(--muted);margin-top:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.mini{background:#0a2030;border:1px solid var(--line);border-radius:15px;padding:15px}.mini h3{margin:3px 0 7px;font-size:15px}.mini p{margin:0;color:var(--muted);font-size:12px}
+.field{width:100%;background:#071d2d;border:1px solid var(--line);border-radius:11px;padding:11px;color:var(--text);margin:6px 0 12px}.hidden{display:none!important}.notice{border-left:3px solid var(--warn);background:#302b1c;padding:11px 13px;border-radius:8px;color:#ffe8b4;font-size:12px;margin-top:13px}.success{color:var(--good)}.error{color:#ffaaa8}.answer-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+footer{text-align:center;padding:24px;color:#7895a7;font-size:11px}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.hero-art{max-height:150px;object-position:center 30%}.layout{grid-template-columns:1fr}.side{position:static;display:flex;overflow:auto;gap:4px;padding:8px}.navbtn{white-space:nowrap;width:auto;margin:0}.grid2{grid-template-columns:1fr}.status{display:none}}
+</style></head>
+<body>
+<header><div class="top"><div class="brand"><img src="/static/icon-192.png" alt="BioSage AI logo"><div><b>BioSage AI</b><small>Biotechnology Study Assistant</small></div></div><div class="spacer"></div><div class="status" id="connection">Checking AI connection…</div><button class="secondary" id="installBtn" hidden>Install app</button></div></header>
+<main>
+<section class="hero"><div><div class="eyebrow">KAHE · B.Sc. Biotechnology · Semester 2</div><h1>Study smarter.<br>Understand deeper.</h1><p>Upload a question paper, ask follow-up questions, and get structured answers grounded in your selected Karpagam study materials.</p><div class="pills"><span class="pill">Question paper reader</span><span class="pill">Source-grounded answers</span><span class="pill">Mobile-ready PWA</span></div></div><img class="hero-art" src="/static/biosage-logo.png" alt="BioSage AI mascot"></section>
+<div class="layout">
+<aside class="side">
+<button class="navbtn active" data-page="chat"><span>✦</span>AI Assistant</button>
+<button class="navbtn" data-page="paper"><span>▤</span>Solve Paper</button>
+<button class="navbtn" data-page="generate"><span>✎</span>Generate Paper</button>
+<button class="navbtn" data-page="library"><span>▣</span>Knowledge Library</button>
+<button class="navbtn" data-page="about"><span>ⓘ</span>About & Setup</button>
+</aside>
+<div>
+<section class="panel page" id="page-chat"><h2>Ask BioSage</h2><div class="muted">Choose the source policy for this conversation.</div>
+<div class="modebar"><button class="mode active" data-mode="kahe">Karpagam-only</button><button class="mode" data-mode="internet">Internet-assisted</button></div>
+<div class="chat" id="chat"><div class="msg ai">Hello! I'm BioSage AI. Ask a Biotechnology question or upload a question paper. In Karpagam-only mode, I will answer only when the indexed KAHE materials support the answer. If the source library does not contain enough information, I will tell you.</div></div>
+<div class="composer"><textarea id="prompt" placeholder="Ask about Biochemistry, metabolism, enzymes, practicals…"></textarea><button id="sendBtn">Send</button></div>
+<div class="muted" style="margin-top:8px">Tip: ask “Explain this for a 10-mark answer” or “Give a simple step-by-step explanation”.</div></section>
+
+<section class="panel page hidden" id="page-paper"><h2>Question paper solver</h2><p class="muted">Upload a PDF, photo, or document. BioSage will read the paper and prepare answers using the selected source mode.</p>
+<div class="modebar"><button class="mode active" data-mode="kahe">Karpagam-only</button><button class="mode" data-mode="internet">Internet-assisted</button></div>
+<div class="drop"><div style="font-size:32px">📄</div><b>Choose your question paper</b><p class="muted">PDF, JPG, PNG, DOCX · max 20 MB</p><input id="paperFile" type="file" accept=".pdf,.png,.jpg,.jpeg,.docx,.txt"><div class="filemeta" id="fileName">No file selected</div></div>
+<label class="muted" for="paperInstruction">Instructions (optional)</label><textarea class="field" id="paperInstruction" rows="3" placeholder="Example: Answer all questions. Write 2-mark answers briefly and 10-mark answers in detail."></textarea>
+<button id="solveBtn">Read paper & generate answers</button><div class="chat hidden" id="paperResult" style="margin-top:14px"></div><div class="answer-actions hidden" id="paperActions"><button class="secondary" id="copyPaper">Copy answers</button><button class="secondary" id="downloadPaper">Download TXT</button></div>
+<div class="notice">Use this as a study aid. Review the answers against your teacher's notes and prescribed textbooks. Scanned or blurry papers may need a clearer photo.</div></section>
+
+
+<section class="panel page hidden" id="page-generate"><h2>Question paper generator</h2>
+<p class="muted">Create a custom practice/model paper from the indexed Karpagam course material. This does not generate or reproduce an official college examination paper.</p>
+<div class="modebar"><button class="mode active" data-mode="kahe">Karpagam-only</button><button class="mode" data-mode="internet">Internet-assisted</button></div>
+<label class="muted" for="genSubject">Subject</label><input class="field" id="genSubject" value="Biochemistry and Metabolism">
+<label class="muted" for="genTopics">Topics or units (optional)</label><textarea class="field" id="genTopics" rows="2" placeholder="Example: carbohydrates, glycolysis, TCA cycle, enzymes"></textarea>
+<div class="grid2"><div><label class="muted" for="genMarks">Maximum marks</label><select class="field" id="genMarks"><option>25</option><option>50</option><option selected>75</option><option>100</option></select></div>
+<div><label class="muted" for="genDuration">Duration</label><select class="field" id="genDuration"><option value="60">1 hour</option><option value="120">2 hours</option><option value="180" selected>3 hours</option></select></div>
+<div><label class="muted" for="genDifficulty">Difficulty</label><select class="field" id="genDifficulty"><option value="easy">Easy</option><option value="balanced" selected>Balanced</option><option value="challenging">Challenging</option></select></div>
+<div><label class="muted" for="genInstructions">Paper style</label><select class="field" id="genInstructions"><option value="Include 2-mark, 6-mark and 10-mark questions.">2, 6 and 10 mark sections</option><option value="Create only multiple-choice questions with answer key.">MCQ paper</option><option value="Include short answers, essays and application-based questions.">Mixed / application-based</option><option value="Create practical and laboratory viva questions.">Practical / viva</option></select></div></div>
+<button id="generateBtn">Generate practice paper</button><div class="chat hidden" id="generatedPaper" style="margin-top:14px"></div>
+<div class="answer-actions hidden" id="generatedActions"><button class="secondary" id="copyGenerated">Copy paper</button><button class="secondary" id="downloadGenerated">Download paper</button></div>
+<div class="notice">For reliable Karpagam-only papers, the current Semester 2 syllabus and relevant lecture notes must be indexed in the knowledge base. Generated papers are for revision and practice only.</div>
+</section>
+
+<section class="panel page hidden" id="page-library"><h2>Knowledge library</h2><p class="muted">This is the curated source collection BioSage searches. Add only documents you are allowed to use. For KAHE-only answers, only documents indexed in the KAHE knowledge base are retrieved.</p>
+<div class="grid2"><div class="mini"><h3>KAHE source collection</h3><p>Official syllabus, department resources, lecture notes, practical records and question papers that the college makes available and you are permitted to use.</p></div><div class="mini"><h3>External reference collection</h3><p>Only searched in Internet-assisted mode. External explanations are labelled separately from KAHE material.</p></div></div>
+<div style="margin-top:17px"><h3 style="font-size:15px">Add a study document (admin)</h3><p class="muted">Upload official course PDFs or notes to the server-side vector database. Admin token is required.</p><input class="field" id="adminToken" type="password" placeholder="Admin upload token"><input class="field" id="materialFile" type="file" accept=".pdf,.docx,.pptx,.txt,.md"><button id="uploadMaterial">Add to KAHE knowledge base</button><div id="uploadStatus" class="muted" style="margin-top:9px"></div></div>
+</section>
+
+<section class="panel page hidden" id="page-about"><h2>About BioSage AI</h2><p>BioSage AI is an independent student learning project for Karpagam B.Sc. Biotechnology. It is not an official KAHE product and does not represent the college.</p><div class="grid2"><div class="mini"><h3>How answers work</h3><p>Retrieval-augmented generation (RAG): find relevant source passages first, then ask the AI to explain them. Answers show source references where available.</p></div><div class="mini"><h3>Privacy</h3><p>Uploaded papers and questions are sent to the configured AI backend for processing. Do not upload personal records or confidential exam materials without permission.</p></div></div><div class="notice">A live AI service requires an OpenAI API key, a vector store ID, and a deployed backend. Never paste an API key into this page or a public GitHub repository.</div><p class="muted">Official curriculum reference: <a href="https://kahedu.edu.in/n/wp-content/uploads/2025/10/UG-Syllabus-18.08.2025-merged.pdf" target="_blank" rel="noopener">KAHE B.Sc. Biotechnology 2025–2026 syllabus</a>. Confirm the correct curriculum for your admission batch.</p></section>
+</div></div></main><footer>BioSage AI · Independent learning project · Not affiliated with or endorsed by KAHE</footer>
+<script>
+let mode='kahe',lastPaperAnswer='',deferredInstall=null;
+const $=id=>document.getElementById(id);
+document.querySelectorAll('.navbtn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.navbtn').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.page').forEach(x=>x.classList.toggle('hidden',x.id!=='page-'+b.dataset.page))}));
+document.querySelectorAll('.mode').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('active',x.dataset.mode===mode))}));
+function addMsg(text,who='ai'){let d=document.createElement('div');d.className='msg '+who;d.textContent=text;$('chat').appendChild(d);$('chat').scrollTop=$('chat').scrollHeight;return d}
+async function health(){try{let r=await fetch('/api/health');let j=await r.json();$('connection').textContent=j.ai_configured?'AI connected':'Backend ready · AI setup needed';$('connection').style.color=j.ai_configured?'#6ee7a5':'#ffd27d'}catch{$('connection').textContent='Backend not connected'}}
+async function send(){let q=$('prompt').value.trim();if(!q)return;addMsg(q,'user');$('prompt').value='';$('sendBtn').disabled=true;let box=addMsg('Searching the selected study sources and preparing an answer…');try{let r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,mode})});let j=await r.json();if(!r.ok)throw new Error(j.detail||'Request failed');box.textContent=j.answer||'No answer returned.';if(j.sources?.length){let s=document.createElement('span');s.className='source';s.textContent='Sources: '+j.sources.join(' · ');box.appendChild(s)}}catch(e){box.textContent='Could not get an AI answer: '+e.message+'\\nCheck backend setup and the knowledge base.'}finally{$('sendBtn').disabled=false}}
+$('sendBtn').onclick=send;$('prompt').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});
+$('paperFile').onchange=()=>{$('fileName').textContent=$('paperFile').files[0]?.name||'No file selected'};
+$('solveBtn').onclick=async()=>{let f=$('paperFile').files[0];if(!f){alert('Choose a question paper first.');return}let fd=new FormData();fd.append('file',f);fd.append('mode',mode);fd.append('instructions',$('paperInstruction').value);$('solveBtn').disabled=true;$('solveBtn').textContent='Reading paper and solving…';$('paperResult').classList.remove('hidden');$('paperResult').textContent='Uploading securely to your configured AI backend…';$('paperActions').classList.add('hidden');try{let r=await fetch('/api/question-paper',{method:'POST',body:fd});let j=await r.json();if(!r.ok)throw new Error(j.detail||'Processing failed');lastPaperAnswer=j.answer||'';$('paperResult').textContent=lastPaperAnswer;$('paperActions').classList.remove('hidden')}catch(e){$('paperResult').textContent='Could not process paper: '+e.message+'\\nCheck API configuration, allowed file type and knowledge base.'}finally{$('solveBtn').disabled=false;$('solveBtn').textContent='Read paper & generate answers'}};
+$('copyPaper').onclick=async()=>{await navigator.clipboard.writeText(lastPaperAnswer);$('copyPaper').textContent='Copied!';setTimeout(()=>$('copyPaper').textContent='Copy answers',1500)};
+$('downloadPaper').onclick=()=>{let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([lastPaperAnswer],{type:'text/plain'}));a.download='BioSage_Question_Paper_Answers.txt';a.click();URL.revokeObjectURL(a.href)};
+$('uploadMaterial').onclick=async()=>{let f=$('materialFile').files[0],token=$('adminToken').value;if(!f||!token){$('uploadStatus').textContent='Choose a document and enter the admin token.';return}let fd=new FormData();fd.append('file',f);$('uploadStatus').textContent='Uploading and indexing…';try{let r=await fetch('/api/admin/ingest',{method:'POST',headers:{'X-Admin-Token':token},body:fd});let j=await r.json();if(!r.ok)throw new Error(j.detail||'Upload failed');$('uploadStatus').textContent='Added to KAHE knowledge base: '+j.filename;$('uploadStatus').className='muted success'}catch(e){$('uploadStatus').textContent=e.message;$('uploadStatus').className='muted error'}};
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;$('installBtn').hidden=false});$('installBtn').onclick=async()=>{if(deferredInstall){deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('installBtn').hidden=true}};
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+let generatedPaperText='';
+$('generateBtn').onclick=async()=>{
+ const payload={
+  subject:$('genSubject').value.trim(),
+  topics:$('genTopics').value.trim(),
+  total_marks:Number($('genMarks').value),
+  duration_minutes:Number($('genDuration').value),
+  difficulty:$('genDifficulty').value,
+  mode,
+  instructions:$('genInstructions').value
+ };
+ if(!payload.subject){alert('Enter a subject first.');return}
+ $('generateBtn').disabled=true;$('generateBtn').textContent='Creating practice paper…';
+ $('generatedPaper').classList.remove('hidden');$('generatedPaper').textContent='Searching your selected study sources and preparing a balanced paper…';
+ $('generatedActions').classList.add('hidden');
+ try{
+  let r=await fetch('/api/generate-paper',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  let j=await r.json();if(!r.ok)throw new Error(j.detail||'Generation failed');
+  generatedPaperText=j.paper||'';$('generatedPaper').textContent=generatedPaperText;
+  if(j.sources?.length){let s=document.createElement('span');s.className='source';s.textContent='Sources: '+j.sources.join(' · ');$('generatedPaper').appendChild(s)}
+  $('generatedActions').classList.remove('hidden');
+ }catch(e){$('generatedPaper').textContent='Could not generate paper: '+e.message+'\\nCheck AI setup and ensure the requested course documents are indexed.'}
+ finally{$('generateBtn').disabled=false;$('generateBtn').textContent='Generate practice paper'}
+};
+$('copyGenerated').onclick=async()=>{await navigator.clipboard.writeText(generatedPaperText);$('copyGenerated').textContent='Copied!';setTimeout(()=>$('copyGenerated').textContent='Copy paper',1500)};
+$('downloadGenerated').onclick=()=>{let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([generatedPaperText],{type:'text/plain'}));a.download='BioSage_Practice_Question_Paper.txt';a.click();URL.revokeObjectURL(a.href)};
+
+health();
+</script></body></html>

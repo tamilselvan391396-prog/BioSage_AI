@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: biosage-ai
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: KAHE_VECTOR_STORE_ID
+        sync: false
+      - key: ADMIN_TOKEN
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-6.2-astra
+      - key: OPENAI_WEB_MODEL
+        value: gpt-6.2-astra
